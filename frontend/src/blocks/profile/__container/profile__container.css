@@ -1,0 +1,15 @@
+.profile__container {
+	display: grid;
+	grid-template-areas: "profile__avatar profile__info";
+	max-width: 500px;
+}
+
+@media screen and (max-width: 767px) {
+	.profile__container {
+		grid-template-areas:
+			"profile__avatar"
+			"profile__info";
+		margin: auto;
+		max-width: 282px;
+	}
+}
