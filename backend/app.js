@@ -12,7 +12,7 @@ const { requestLogger, errorLogger } = require('./middlewares/logger');
 
 const app = express();
 
-app.use(express.static('../frontend/build'));
+//app.use(express.static('../frontend/build'));
 
 mongoose
   .connect(`mongodb://${host}:27017/MestoDB`, {
