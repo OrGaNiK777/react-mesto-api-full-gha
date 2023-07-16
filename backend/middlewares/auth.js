@@ -2,7 +2,7 @@ const NotAuthError = require('../errors/not-auth-error');
 const { verifyToken } = require('../utils/jwt');
 
 module.exports = (req, res, next) => {
-  const { authorization } = req.headers;
+  const { authorization } = req.cookies.jwt;
 
   if (!authorization) {
     return next(new NotAuthError('Необходима авторизация'));

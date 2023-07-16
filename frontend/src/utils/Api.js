@@ -1,5 +1,3 @@
-const jwt = localStorage.getItem("jwt");
-
 class Api {
 	constructor(options) {
 		// тело конструктора
@@ -31,6 +29,7 @@ class Api {
 	getInitialCards() {
 		return this._request(`${this._url}/cards`, {
 			headers: this._headers,
+			credentials: 'include',
 		});
 	}
 
@@ -39,6 +38,7 @@ class Api {
 		return this._request(`${this._url}/users/me`, {
 			method: "PATCH",
 			headers: this._headers,
+			credentials: 'include',
 			body: JSON.stringify({
 				name: data.name,
 				about: data.about,
@@ -51,6 +51,7 @@ class Api {
 		return this._request(`${this._url}/cards/`, {
 			method: "post",
 			headers: this._headers,
+			credentials: 'include',
 			body: JSON.stringify({
 				link: data.link,
 				name: data.name,
@@ -63,6 +64,7 @@ class Api {
 		return this._request(`${this._url}/cards/${id}`, {
 			method: "DELETE",
 			headers: this._headers,
+			credentials: 'include',
 		});
 	}
 
@@ -71,6 +73,7 @@ class Api {
 		return this._request(`${this._url}/cards/${id}/likes`, {
 			method: "PUT",
 			headers: this._headers,
+			credentials: 'include',
 		});
 	}
 
@@ -79,6 +82,7 @@ class Api {
 		return this._request(`${this._url}/cards/${id}/likes`, {
 			method: "DELETE",
 			headers: this._headers,
+			credentials: 'include',
 		});
 	}
 
@@ -87,6 +91,7 @@ class Api {
 		return this._request(`${this._url}/users/me/avatar`, {
 			method: "PATCH",
 			headers: this._headers,
+			credentials: 'include',
 			body: JSON.stringify({
 				avatar: avatar,
 			}),
@@ -95,11 +100,11 @@ class Api {
 }
 
 const api = new Api({
-	url: "http://localhost:3000",
+	url: "http://localhost:4000",
 	headers: {
-		"Content-Type": "application/json",
-		authorization: `Bearer ${jwt}`,
+		"Content-Type": "application/json"
 	},
-});
+},
+);
 
 export default api;

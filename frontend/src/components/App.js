@@ -190,7 +190,6 @@ function App() {
 		auth.authorize(password, email)
 			.then((data) => {
 				if (data) {
-					localStorage.setItem("jwt", data.token);
 					handleTokenCheck();
 					return data;
 				}
@@ -206,25 +205,29 @@ function App() {
 
 	//проверка токена
 	const handleTokenCheck = () => {
-		const jwt = localStorage.getItem("jwt");
-		if (jwt) {
-			auth.checkToken(jwt)
-				.then((res) => {
-					if (res) {
-						setIsLogin(true);
-						navigate("/");
-						setIsUser(res.data.email);
-					}
-				})
-				.catch((err) => console.log(err));
-		} else {
-			setIsLogin(false);
-		}
+		auth
+			.checkToken()
+			.then((res) => {
+				if (res) {
+					setIsLogin(true);
+					navigate("/");
+					setIsUser(res.data.email);
+				}
+				setIsLogin(false)
+			})
+			.catch((err) => {
+				setIsLogin(false);
+				console.log(err)
+			});
+
 	};
+	useEffect(() => {
+		handleTokenCheck();
+		// eslint-disable-next-line react-hooks/exhaustive-deps
+	}, []);
 
 	//удаление токена
 	function signOut() {
-		localStorage.removeItem("jwt");
 		Navigate("/sing-in");
 	}
 

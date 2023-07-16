@@ -2,6 +2,7 @@ require('dotenv').config();
 const express = require('express');
 const mongoose = require('mongoose');
 const { errors } = require('celebrate');
+const cookieParser = require('cookie-parser');
 // const helmet = require('helmet');
 
 const cors = require('./middlewares/cors');
@@ -12,7 +13,7 @@ const { requestLogger, errorLogger } = require('./middlewares/logger');
 
 const app = express();
 
-//app.use(express.static('../frontend/build'));
+// app.use(express.static('../frontend/build'));
 
 mongoose
   .connect(`mongodb://${host}:27017/MestoDB`, {
@@ -31,6 +32,8 @@ app.use(requestLogger);
 app.use(cors);
 
 // app.use(helmet());
+
+app.use(cookieParser());
 
 app.get('/crash-test', () => {
   setTimeout(() => {

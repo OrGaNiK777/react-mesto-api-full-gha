@@ -1,4 +1,4 @@
-const url = "http://localhost:3000";
+const url = "http://localhost:4000";
 const headers = {
 	Accept: "application/json",
 	"Content-Type": "application/json",
@@ -16,6 +16,7 @@ export const register = (password, email) => {
 	return fetch(`${url}/signup`, {
 		method: "POST",
 		headers: headers,
+		credentials: 'include',
 		body: JSON.stringify({ password, email }),
 	}).then((res) => checkingResponse(res));
 };
@@ -24,17 +25,15 @@ export const authorize = (password, email) => {
 	return fetch(`${url}/signin`, {
 		method: "POST",
 		headers: headers,
+		credentials: 'include',
 		body: JSON.stringify({ password, email }),
 	}).then((res) => checkingResponse(res));
 };
 
-export const checkToken = (token) => {
+export const checkToken = () => {
 	return fetch(`${url}/users/me`, {
 		method: "GET",
-		headers: {
-			Accept: "application/json",
-			"Content-Type": "application/json",
-			authorization: `Bearer ${token}`,
-		},
+		headers: headers,
+		credentials: 'include',
 	}).then((res) => checkingResponse(res));
 };
