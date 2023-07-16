@@ -1,0 +1,24 @@
+.load__text {
+	margin: 0;
+	padding: 0;
+	position: absolute;
+	top: 200px;
+	right: 40%;
+	font-style: normal;
+	font-weight: 400;
+	font-size: 50px;
+	line-height: 15px;
+	color: #ffffff;
+}
+
+@media screen and (max-width: 1023px) {
+	.load__text {
+		right: 40%;
+	}
+}
+
+@media screen and (max-width: 719px) {
+	.load__text {
+		right: 30%;
+	}
+}

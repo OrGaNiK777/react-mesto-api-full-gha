@@ -1,0 +1,18 @@
+.profile__info {
+	display: grid;
+	grid-area: profile__info;
+	min-width: 335px;
+
+	grid-template-areas:
+		"profile__name profile__edit-button"
+		"profile__about profile__edit-button";
+}
+
+@media screen and (max-width: 767px) {
+	.profile__info {
+		grid-template-areas:
+			"profile__name profile__edit-button"
+			"profile__about profile__about";
+		min-width: 265px;
+	}
+}
