@@ -95,7 +95,7 @@ class Api {
 }
 
 const api = new Api({
-	url: "http://localhost:4000",
+	url: "http://localhost:3000",
 	headers: {
 		"Content-Type": "application/json",
 		authorization: `Bearer ${jwt}`,
