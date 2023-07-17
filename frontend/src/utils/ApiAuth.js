@@ -13,7 +13,7 @@ function checkingResponse(res) {
 }
 
 export const register = (password, email) => {
-	return fetch(`${url}/sign-up`, {
+	return fetch(`${url}/signup`, {
 		method: "POST",
 		headers: headers,
 		body: JSON.stringify({ password, email }),
@@ -21,7 +21,7 @@ export const register = (password, email) => {
 };
 
 export const authorize = (password, email) => {
-	return fetch(`${url}/sign-in`, {
+	return fetch(`${url}/signin`, {
 		method: "POST",
 		headers: headers,
 		credentials: 'include',
@@ -36,3 +36,11 @@ export const checkToken = () => {
 		credentials: 'include',
 	}).then((res) => { return checkingResponse(res) });
 };
+
+export const loginOut = () => {
+	return fetch(`${url}/signout`, {
+		method: "DELETE",
+		headers: headers,
+		credentials: 'include',
+	}).then((res) => { checkingResponse(res) });
+}

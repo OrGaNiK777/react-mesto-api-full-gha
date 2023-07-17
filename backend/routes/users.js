@@ -8,6 +8,7 @@ const {
   patchUserById,
   patchAvatarById,
   getCurrentUser,
+  signOut,
 } = require('../controllers/users');
 
 router.get('/users', getUsers);
@@ -39,5 +40,7 @@ router.patch('/users/me/avatar', celebrate({
     ),
   }),
 }), patchAvatarById);
+
+router.delete('/signout', signOut);
 
 module.exports = router;

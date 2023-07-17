@@ -216,11 +216,15 @@ function App() {
 
 	//удаление токена
 	function signOut() {
-		setIsUser("");
-		setIsLogin(false);
-		navigate("/");
-
-
+		auth.loginOut()
+			.then((data) => {
+				if (data) {
+					localStorage.removeItem('userEmail')
+					setIsUser("");
+					setIsLogin(false);
+					navigate("/");
+				}
+			})
 	}
 
 	//экран загрузки

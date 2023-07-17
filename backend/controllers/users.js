@@ -73,6 +73,10 @@ const login = (req, res, next) => {
     });
 };
 
+const signOut = (req, res) => {
+  res.status(200).clearCookie('jwt').send({ message: 'Вы вышли из системы' });
+};
+
 const patchUserById = (req, res, next) => {
   const newUser = req.body;
   const { id } = req.user;
@@ -114,4 +118,5 @@ module.exports = {
   patchAvatarById,
   login,
   getCurrentUser,
+  signOut,
 };
