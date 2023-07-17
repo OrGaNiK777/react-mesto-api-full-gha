@@ -186,6 +186,7 @@ function App() {
 		auth.authorize(password, email)
 			.then((data) => {
 				handleTokenCheck()
+				window.location.reload();
 			})
 			.catch((err) => console.log(err))
 			.finally(() => {
@@ -201,9 +202,9 @@ function App() {
 			.checkToken()
 			.then((res) => {
 				if (res) {
+					setIsLogin(true);
 					navigate("/");
 					setIsUser(res.email);
-					setIsLogin(true);
 				} else
 					setIsLogin(false)
 			})
@@ -219,7 +220,6 @@ function App() {
 		auth.loginOut()
 			.then((data) => {
 				if (data) {
-					localStorage.removeItem('userEmail')
 					setIsUser("");
 					setIsLogin(false);
 					navigate("/");

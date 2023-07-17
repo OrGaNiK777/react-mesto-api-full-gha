@@ -42,5 +42,5 @@ export const loginOut = () => {
 		method: "DELETE",
 		headers: headers,
 		credentials: 'include',
-	}).then((res) => { checkingResponse(res) });
+	}).then((res) => { return checkingResponse(res) });
 }
