@@ -1,4 +1,4 @@
-const host = 'mesto.organik.nomoredomains.xyz';
+const host = 'localhost';
 
 const { PORT = 3000 } = process.env;
 
