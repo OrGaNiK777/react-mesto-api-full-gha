@@ -1,3 +1,4 @@
+1
 [![Статус тестов](../../actions/workflows/tests.yml/badge.svg)](../../actions/workflows/tests.yml)
 
 # [Ссылка на react-mesto-api-full](https://github.com/OrGaNiK777/mesto-final)
