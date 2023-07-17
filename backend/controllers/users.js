@@ -67,8 +67,8 @@ const login = (req, res, next) => {
       return bcrypt.compare(password, user.password, (err, result) => {
         if (!result) { next(new NotAuthError('Не верный email или пароль')); }
         const token = generateToken(user._id);
-        res.cookie('jwt', token, { maxAge: 604800, httpOnly: true, sameSite: true });
-        res.status(httpConstants.HTTP_STATUS_OK).send({ user });
+        res.cookie('jwt', token, { maxAge: 3600000 * 24 * 7, httpOnly: true, sameSite: true });
+        res.status(httpConstants.HTTP_STATUS_OK).send({ email: user.email, _id: user.id });//
       });
     });
 };

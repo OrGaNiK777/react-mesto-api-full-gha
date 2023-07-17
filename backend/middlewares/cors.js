@@ -1,11 +1,13 @@
 const allowedCors = [
   'localhost:3000',
   'http://localhost:3000',
+  'http://localhost:4000',
   'mesto.organik.nomoredomains.xyz',
   'http://mesto.organik.nomoredomains.xyz',
   'https://mesto.organik.nomoredomains.xyz',
   'http://api.mesto.organik.nomoredomains.xyz',
   'https://api.mesto.organik.nomoredomains.xyz',
+  'https://yandex.ru',
 ];
 
 module.exports = (req, res, next) => {

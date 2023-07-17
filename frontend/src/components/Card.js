@@ -1,4 +1,4 @@
-function Card({ currentUser, card, onCardClick, onCardLike, onCardDelete }) {
+function Card({ currentUser, card, onCardClick, onCardLike, onCardDelete, onPopupCardDelete }) {
 	function handleClick() {
 		onCardClick(card);
 	}
@@ -12,6 +12,7 @@ function Card({ currentUser, card, onCardClick, onCardLike, onCardDelete }) {
 	}
 
 	// Определяем, являемся ли мы владельцем текущей карточки
+
 	const isOwn = card.owner._id === currentUser._id;
 
 	// Создаём переменную, которую после зададим в `className` для кнопки удаления

@@ -15,7 +15,6 @@ import { Route, Routes, Navigate, useNavigate } from "react-router-dom";
 import ProtectedRouteElement from "./ProtectedRoute.js";
 import InfoTooltip from "./InfoTooltip.js";
 import * as auth from "../utils/ApiAuth.js";
-import DeletePopup from "./DeleteCardPopup.js";
 
 function App() {
 	//управление видимостью попапов
@@ -25,7 +24,6 @@ function App() {
 	const [isAddPlacePopupOpen, setIsAddPlacePopupOpen] = useState(false);
 	const [isEditAvatarPopupOpen, setIsEditAvatarPopupOpen] = useState(false);
 	const [isAuthPopupOpen, setIsAuthPopupOpen] = useState(false);
-	const [isDeleteCardOpen, setIsDeleteCardOpen] = useState(false);
 
 	function handleEditProfileClick() {
 		setIsEditProfilePopupOpen(!isEditProfilePopupOpen);
@@ -39,17 +37,13 @@ function App() {
 		setIsEditAvatarPopupOpen(!isEditAvatarPopupOpen);
 	}
 
-	function handleDeleteCardClick() {
-		setIsDeleteCardOpen(!isDeleteCardOpen);
-	}
-
 	function closeAllPopups() {
 		setIsEditProfilePopupOpen(false);
 		setIsAddPlacePopupOpen(false);
 		setIsEditAvatarPopupOpen(false);
 		setSelectedCard(false);
 		setIsAuthPopupOpen(false);
-		setIsDeleteCardOpen(false);
+
 	}
 
 	//выгрузка данных о пользователе с сервера
@@ -96,7 +90,8 @@ function App() {
 			.catch((error) => {
 				console.log(error.message);
 			});
-	});
+		// eslint-disable-next-line react-hooks/exhaustive-deps
+	}, []);
 
 	//отправка новой карты
 	function handleAddPlaceSubmit(item) {
@@ -126,7 +121,7 @@ function App() {
 		// Отправляем запрос в API и получаем обновлённые данные карточки
 		!isLiked
 			? api
-				.putLike(card._id, !isLiked)
+				.putLike(card._id)
 				.then((newCard) => {
 					setCards((state) =>
 						state.map((c) => (c._id === card._id ? newCard : c))
@@ -134,7 +129,7 @@ function App() {
 				})
 				.catch((err) => console.log(err))
 			: api
-				.deleteLike(card._id, !isLiked)
+				.deleteLike(card._id)
 				.then((newCard) => {
 					setCards((state) =>
 						state.map((c) => (c._id === card._id ? newCard : c))
@@ -146,6 +141,7 @@ function App() {
 	//Добавьте поддержку удаления карточки
 	function handleCardDelete(card) {
 		// Определяем, являемся ли мы владельцем текущей карточки
+
 		const isOwn = card.owner._id === currentUser._id;
 
 		//Отправляем запрос в API и получаем карточки
@@ -165,7 +161,7 @@ function App() {
 		setIsLoading(!isLoading);
 		auth.register(password, email)
 			.then((res) => {
-				if (res.data) {
+				if (res) {
 					setIsAuthPopupOpen(true);
 					setIsRegister(true);
 					navigate("/sign-in");
@@ -189,11 +185,7 @@ function App() {
 		setIsLoading(!isLoading);
 		auth.authorize(password, email)
 			.then((data) => {
-				if (data) {
-					handleTokenCheck();
-					return data;
-				}
-				return data;
+				handleTokenCheck()
 			})
 			.catch((err) => console.log(err))
 			.finally(() => {
@@ -209,11 +201,11 @@ function App() {
 			.checkToken()
 			.then((res) => {
 				if (res) {
-					setIsLogin(true);
 					navigate("/");
-					setIsUser(res.data.email);
-				}
-				setIsLogin(false)
+					setIsUser(res.email);
+					setIsLogin(true);
+				} else
+					setIsLogin(false)
 			})
 			.catch((err) => {
 				setIsLogin(false);
@@ -221,14 +213,14 @@ function App() {
 			});
 
 	};
-	useEffect(() => {
-		handleTokenCheck();
-		// eslint-disable-next-line react-hooks/exhaustive-deps
-	}, []);
 
 	//удаление токена
 	function signOut() {
-		Navigate("/sing-in");
+		setIsUser("");
+		setIsLogin(false);
+		navigate("/");
+
+
 	}
 
 	//экран загрузки
@@ -291,7 +283,7 @@ function App() {
 										card={item}
 										onCardClick={handleCardClick}
 										onCardLike={handleCardLike}
-										onCardDelete={handleDeleteCardClick}
+										onCardDelete={handleCardDelete}
 									></Card>
 								))}
 							</ProtectedRouteElement>
@@ -311,13 +303,6 @@ function App() {
 					isOpen={isAddPlacePopupOpen}
 					onClose={closeAllPopups}
 					onAddPlaceSubmit={handleAddPlaceSubmit}
-					isLoading={isLoading}
-				/>
-
-				<DeletePopup //подскажите как добавить возможно подтвердить удаление карточки? Нужно же как то передать карточку.
-					isOpen={isDeleteCardOpen}
-					onDeleteCard={handleCardDelete}
-					onClose={closeAllPopups}
 					isLoading={isLoading}
 				/>
 

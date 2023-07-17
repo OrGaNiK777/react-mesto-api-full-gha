@@ -22,6 +22,7 @@ class Api {
 	getUserInfo() {
 		return this._request(`${this._url}/users/me`, {
 			headers: this._headers,
+			credentials: 'include',
 		});
 	}
 

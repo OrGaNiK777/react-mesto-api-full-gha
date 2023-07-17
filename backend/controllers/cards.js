@@ -45,7 +45,7 @@ const deleteCardById = (req, res, next) => {
 const putLikesCardById = (req, res, next) => {
   Card.findByIdAndUpdate(
     req.params.id,
-    { $addToSet: { likes: req.params.id } }, // добавить _id в массив, если его там нет
+    { $addToSet: { likes: req.user.id } }, // добавить _id в массив, если его там нет
     { new: true },
   ).populate(['likes', 'owner'])
     .orFail(new NotFoundError(`Карточка с id ${req.params.id} не  найдена`))

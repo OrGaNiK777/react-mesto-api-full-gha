@@ -13,16 +13,15 @@ function checkingResponse(res) {
 }
 
 export const register = (password, email) => {
-	return fetch(`${url}/signup`, {
+	return fetch(`${url}/sign-up`, {
 		method: "POST",
 		headers: headers,
-		credentials: 'include',
 		body: JSON.stringify({ password, email }),
 	}).then((res) => checkingResponse(res));
 };
 
 export const authorize = (password, email) => {
-	return fetch(`${url}/signin`, {
+	return fetch(`${url}/sign-in`, {
 		method: "POST",
 		headers: headers,
 		credentials: 'include',
@@ -35,5 +34,5 @@ export const checkToken = () => {
 		method: "GET",
 		headers: headers,
 		credentials: 'include',
-	}).then((res) => checkingResponse(res));
+	}).then((res) => { return checkingResponse(res) });
 };
