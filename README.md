@@ -4,23 +4,14 @@
 # [Ссылка на react-mesto-api-full](https://github.com/OrGaNiK777/mesto-final)
 Репозиторий для приложения проекта `Mesto`, включающий фронтенд и бэкенд части приложения со следующими возможностями: авторизации и регистрации пользователей, операции с карточками и пользователями. Бэкенд расположите в директории `backend/`, а фронтенд - в `frontend/`. 
   
-Пожалуйста, прикрепите в это описание ссылку на сайт, размещенный на Яндекс.Облаке.
 
-# Ссылки на проект
+IP 158.160.49.56
 
-## Публичный ip:
+Frontend https://mesto.organik.nomoredomains.xyz
 
-### 158.160.49.56
 
-## Frontend
+Backend https://api.mesto.organik.nomoredomains.xyz
 
-### https://mesto.organik.nomoredomains.xyz
-### http://mesto.organik.nomoredomains.xyz
-
-## Backend
-
-### https://api.mesto.organik.nomoredomains.xyz
-### http://api.mesto.organik.nomoredomains.xyz
 
 ## Краш-тест сервера
 
