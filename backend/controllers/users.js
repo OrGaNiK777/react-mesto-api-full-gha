@@ -70,7 +70,8 @@ const login = (req, res, next) => {
         res.cookie('jwt', token, { maxAge: 3600000 * 24 * 7, httpOnly: true, sameSite: true });
         res.status(httpConstants.HTTP_STATUS_OK).send({ email: user.email, _id: user.id });//
       });
-    });
+    })
+    .catch(next);
 };
 
 const signOut = (req, res) => {
