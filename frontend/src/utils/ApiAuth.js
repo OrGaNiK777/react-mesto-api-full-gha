@@ -1,3 +1,4 @@
+//const url = "http://localhost:4000";
 const url = "https://api.mesto.organik.nomoredomains.xyz";
 const headers = {
 	Accept: "application/json",
