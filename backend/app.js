@@ -16,7 +16,7 @@ const app = express();
 // app.use(express.static('../frontend/build'));
 
 mongoose
-  .connect(`mongodb://${host}:27017/MestoDB`, {
+  .connect(`mongodb://${host}:27017/filmsdb`, {
     useNewUrlParser: true,
     family: 4,
   })

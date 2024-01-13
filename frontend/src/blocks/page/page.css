@@ -1,5 +1,5 @@
 .page {
-	font-family: "Inter", Arial, Helvetica, sans-serif;
+	font-family: 'Inter', Arial, Helvetica, sans-serif;
 	-webkit-font-smoothing: antialiased;
 	-moz-osx-font-smoothing: grayscale;
 	-webkit-text-size-adjust: 100%;
@@ -7,7 +7,7 @@
 	-moz-text-size-adjust: 100%;
 	margin: 0;
 	padding: 0;
-	background-color: #000000;
+	background-color: #202020;
 	width: 100%;
 	min-height: 100vh;
 }

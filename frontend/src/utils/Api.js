@@ -1,4 +1,7 @@
+const jwt =
+  'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY1NWI1MTIxMDgzMzNmMzRkMWJmMTg2MSIsImlhdCI6MTcwMDQ4MzM3OCwiZXhwIjoxNzAxMDg4MTc4fQ.hsbxbYwqxUNy6Mo0wg9bhdLBxCTLdAF6xGEk6cqceig';
 class Api {
+
 	constructor(options) {
 		// тело конструктора
 		this._url = options.url;
@@ -71,6 +74,7 @@ class Api {
 
 	//лайк
 	putLike(id) {
+		console.log(id)
 		return this._request(`${this._url}/cards/${id}/likes`, {
 			method: "PUT",
 			headers: this._headers,
@@ -101,10 +105,11 @@ class Api {
 }
 
 const api = new Api({
-	//url: "http://localhost:4000",
-	url: "https://api.mesto.organik.nomoredomains.xyz",
+	url: "http://localhost:4000",
+	//url: "https://api.mesto.organik.nomoredomains.xyz",
 	headers: {
-		"Content-Type": "application/json"
+		"Content-Type": "application/json",
+		authorization: `Bearer ${jwt}`
 	},
 },
 );

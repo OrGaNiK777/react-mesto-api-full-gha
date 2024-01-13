@@ -228,13 +228,7 @@ function App() {
 	}
 
 	//экран загрузки
-	if (isLogin === null) {
-		return (
-			<div className="load">
-				<p className="load__text">Загрузка...</p>
-			</div>
-		);
-	}
+
 
 	return (
 		<CurrentUserContext.Provider value={currentUser}>

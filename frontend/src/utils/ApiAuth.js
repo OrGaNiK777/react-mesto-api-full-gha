@@ -1,8 +1,11 @@
-//const url = "http://localhost:4000";
-const url = "https://api.mesto.organik.nomoredomains.xyz";
+const url = "http://localhost:4000";
+//const url = "https://api.mesto.organik.nomoredomains.xyz";
+const jwt =
+	'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY1NWI1MTIxMDgzMzNmMzRkMWJmMTg2MSIsImlhdCI6MTcwMDQ4MzM3OCwiZXhwIjoxNzAxMDg4MTc4fQ.hsbxbYwqxUNy6Mo0wg9bhdLBxCTLdAF6xGEk6cqceig';
 const headers = {
 	Accept: "application/json",
 	"Content-Type": "application/json",
+	authorization: `Bearer ${jwt}`
 };
 
 function checkingResponse(res) {
